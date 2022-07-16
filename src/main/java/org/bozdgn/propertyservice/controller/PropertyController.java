@@ -6,10 +6,11 @@ import org.bozdgn.propertyservice.service.PropertyService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/propertys")
+@RequestMapping("/api/properties")
 public class PropertyController {
     private final PropertyService propertyService;
 
@@ -25,7 +26,7 @@ public class PropertyController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
     @GetMapping("/{id}")
-    public PropertyOutput getOne(@PathVariable Long id) {
+    public PropertyOutput get(@PathVariable Long id) {
         return propertyService.get(id);
     }
 
@@ -37,9 +38,13 @@ public class PropertyController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
     @PutMapping("/")
-    public PropertyOutput update(@RequestBody PropertyInput propertyInput) {
-        // TODO(bora): `BadRequest` if prop.id is null
-        return propertyService.save(propertyInput);
+    public PropertyOutput update(@RequestBody PropertyInput propertyInput, HttpServletResponse response) {
+        if (propertyInput.getId() != null) {
+            return propertyService.save(propertyInput);
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return new PropertyOutput();
+        }
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
