@@ -3,7 +3,7 @@ package org.bozdgn.propertyservice.util;
 import org.bozdgn.propertyservice.dto.PropertyInput;
 import org.bozdgn.propertyservice.dto.PropertyOutput;
 import org.bozdgn.propertyservice.model.Property;
-import org.bozdgn.propertyservice.model.PropertyListingStatus;
+import org.bozdgn.propertyservice.model.PropertyApprovalStatus;
 
 public class MappingUtil {
     private MappingUtil() {
@@ -15,7 +15,7 @@ public class MappingUtil {
                 propertyInput.getAuthor(),
                 propertyInput.getDateCreated(),
                 propertyInput.getDateModified(),
-                PropertyListingStatus.PENDING,
+                PropertyApprovalStatus.PENDING,
                 propertyInput.getTitle(),
                 propertyInput.getDescription(),
                 propertyInput.getImageUri());

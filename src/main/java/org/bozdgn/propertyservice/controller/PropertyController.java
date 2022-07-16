@@ -20,8 +20,8 @@ public class PropertyController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
     @GetMapping
-    public List<PropertyOutput> getAll() {
-        return propertyService.getAll();
+    public List<PropertyOutput> getAccepted() {
+        return propertyService.getAcceptedProperties();
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
@@ -31,13 +31,13 @@ public class PropertyController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
-    @PostMapping("/")
+    @PostMapping
     public PropertyOutput save(@RequestBody PropertyInput propertyInput) {
         return propertyService.save(propertyInput);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
-    @PutMapping("/")
+    @PutMapping
     public PropertyOutput update(@RequestBody PropertyInput propertyInput, HttpServletResponse response) {
         if (propertyInput.getId() != null) {
             return propertyService.save(propertyInput);

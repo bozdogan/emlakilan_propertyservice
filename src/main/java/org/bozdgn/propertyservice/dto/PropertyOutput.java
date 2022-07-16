@@ -4,7 +4,7 @@ package org.bozdgn.propertyservice.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bozdgn.propertyservice.model.PropertyListingStatus;
+import org.bozdgn.propertyservice.model.PropertyApprovalStatus;
 
 import java.time.LocalDate;
 
@@ -17,7 +17,7 @@ public class PropertyOutput {
     String author;
     LocalDate dateCreated;
     LocalDate dateModified;
-    PropertyListingStatus status;
+    PropertyApprovalStatus status;
     String title;
     String description;
     String imageUri;

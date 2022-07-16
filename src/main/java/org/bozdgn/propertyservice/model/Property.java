@@ -31,7 +31,7 @@ public class Property {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    PropertyListingStatus status;
+    PropertyApprovalStatus status;
 
     @Column(name = "title", length = 240)
     String title;

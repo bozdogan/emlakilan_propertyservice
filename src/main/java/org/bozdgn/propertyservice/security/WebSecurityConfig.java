@@ -32,7 +32,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http, @Lazy AuthenticationManager authenticationManager) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/api/properties").authenticated()
+                .antMatchers("/api/**").authenticated()
                 .antMatchers("/**").permitAll()
                 .and().formLogin().disable()
                 .cors()
