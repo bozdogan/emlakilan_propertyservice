@@ -56,7 +56,7 @@ public class PropertyService {
     }
 
     public PropertyOutput get(Long id) {
-        return mapPropertyToPropertyOutput(repository.findById(id).get());
+        return mapPropertyToPropertyOutput(repository.findById(id).orElse(null));
     }
 
     public PropertyOutput save(PropertyInput propertyInput) {
@@ -67,6 +67,8 @@ public class PropertyService {
             Optional<Property> optProperty = repository.findById(propertyInput.getId());
             if (optProperty.isPresent()) {
                 Property property = mapPropertyInputToProperty(propertyInput);
+                property.setDateCreated(optProperty.get().getDateCreated());
+
                 return mapPropertyToPropertyOutput(repository.save(property));
             } else {
                 throw new PropertyNotFoundException(String.format(ERR_NOT_FOUND_WITH_ID, propertyInput.getId()));
