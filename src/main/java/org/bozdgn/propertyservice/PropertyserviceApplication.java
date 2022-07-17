@@ -28,7 +28,8 @@ public class PropertyserviceApplication {
                     PropertyApprovalStatus.ACCEPTED,
                     "2+1, Caddeye Yakın",
                     "Metro durağına koşarak 20 dakika mesafede güneş gören evler",
-                    "manzara.jpg"
+                    "manzara.jpg",
+                    0
             ));
             propertyRepository.save(new Property(
                     null,
@@ -38,7 +39,8 @@ public class PropertyserviceApplication {
                     PropertyApprovalStatus.ACCEPTED,
                     "2+1, Caddeye Yakın",
                     "Metro durağına koşarak 20 dakika mesafede güneş gören evler",
-                    "legendary.jpg"
+                    "legendary.jpg",
+                    0
             ));
             propertyRepository.save(new Property(
                     null,
@@ -48,7 +50,8 @@ public class PropertyserviceApplication {
                     PropertyApprovalStatus.REJECTED,
                     "Arefe Bayramınız kutlu olsun",
                     "adlkjflsf skfs lkjfals fklsj",
-                    "blurps.bmp"
+                    "blurps.bmp",
+                    0
             ));
             propertyRepository.save(new Property(
                     null,
@@ -58,7 +61,8 @@ public class PropertyserviceApplication {
                     PropertyApprovalStatus.PENDING,
                     "1+1 Tutar İNşaat manzaralı",
                     "Otoyola yakın ulaşımı kolay villa apartmanlar",
-                    "vinc.bmp"
+                    "vinc.bmp",
+                    0
             ));
             propertyRepository.save(new Property(
                     null,
@@ -68,7 +72,8 @@ public class PropertyserviceApplication {
                     PropertyApprovalStatus.PENDING,
                     "Example Property Listing",
                     "Lorem ipsum dolor sit amet. I saw the tail of a comet.",
-                    "N/A"
+                    "N/A",
+                    0
             ));
         };
     }
