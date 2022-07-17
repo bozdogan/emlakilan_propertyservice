@@ -34,23 +34,20 @@ public class PropertyService {
                 .collect(Collectors.toList());
     }
 
-    public List<PropertyOutput> getAcceptedProperties() {
-        return repository.findAll().stream()
-                .filter(it -> PropertyApprovalStatus.ACCEPTED.equals(it.getStatus()))
+    public List<PropertyOutput> getAcceptedAds() {
+        return repository.findAllByStatus(PropertyApprovalStatus.ACCEPTED).stream()
                 .map(MappingUtil::mapPropertyToPropertyOutput)
                 .collect(Collectors.toList());
     }
 
-    public List<PropertyOutput> getPendingProperties() {
-        return repository.findAll().stream()
-                .filter(it -> PropertyApprovalStatus.PENDING.equals(it.getStatus()))
+    public List<PropertyOutput> getPendingAds() {
+        return repository.findAllByStatus(PropertyApprovalStatus.PENDING).stream()
                 .map(MappingUtil::mapPropertyToPropertyOutput)
                 .collect(Collectors.toList());
     }
 
-    public List<PropertyOutput> getRejectedProperties() {
-        return repository.findAll().stream()
-                .filter(it -> PropertyApprovalStatus.REJECTED.equals(it.getStatus()))
+    public List<PropertyOutput> getRejectedAds() {
+        return repository.findAllByStatus(PropertyApprovalStatus.REJECTED).stream()
                 .map(MappingUtil::mapPropertyToPropertyOutput)
                 .collect(Collectors.toList());
     }

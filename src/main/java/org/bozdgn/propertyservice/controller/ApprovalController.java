@@ -32,7 +32,7 @@ public class ApprovalController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @GetMapping("/list-pending")
     public List<PendingResponse> getPending() {
-        return propertyService.getPendingProperties().stream()
+        return propertyService.getPendingAds().stream()
                 .map(it -> new PendingResponse(
                         it,
                         String.format(APPROVAL_URL_TEMPLATE, it.getId()),
@@ -43,7 +43,7 @@ public class ApprovalController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @GetMapping("/list-rejected")
     public List<PropertyOutput> getRejected() {
-        return propertyService.getRejectedProperties();
+        return propertyService.getRejectedAds();
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")

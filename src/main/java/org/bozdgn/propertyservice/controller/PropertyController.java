@@ -21,7 +21,7 @@ public class PropertyController {
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
     @GetMapping
     public List<PropertyOutput> getAccepted() {
-        return propertyService.getAcceptedProperties();
+        return propertyService.getAcceptedAds();
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
