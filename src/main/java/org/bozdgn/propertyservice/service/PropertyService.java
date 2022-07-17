@@ -3,7 +3,9 @@ package org.bozdgn.propertyservice.service;
 import org.bozdgn.propertyservice.dto.PropertyInput;
 import org.bozdgn.propertyservice.dto.PropertyOutput;
 import org.bozdgn.propertyservice.dto.UpdateOutput;
+import org.bozdgn.propertyservice.dto.messaging.PropertyMessage;
 import org.bozdgn.propertyservice.error.PropertyNotFoundException;
+import org.bozdgn.propertyservice.messaging.MessageSender;
 import org.bozdgn.propertyservice.model.Property;
 import org.bozdgn.propertyservice.model.PropertyApprovalStatus;
 import org.bozdgn.propertyservice.repository.PropertyRepository;
@@ -22,9 +24,11 @@ public class PropertyService {
 
     private static final String ERR_NOT_FOUND_WITH_ID = "Property with id '%s' does not exist";
     private final PropertyRepository repository;
+    private final MessageSender messageSender;
 
-    public PropertyService(PropertyRepository repository) {
+    public PropertyService(PropertyRepository repository, MessageSender messageSender) {
         this.repository = repository;
+        this.messageSender = messageSender;
     }
 
 
@@ -92,6 +96,12 @@ public class PropertyService {
             Property property = propertyQuery.get();
             property.setStatus(newStatus);
             repository.save(property);
+
+            if (PropertyApprovalStatus.ACCEPTED.equals(newStatus)) {
+                messageSender.sendPropertyAcceptedMessage(new PropertyMessage(
+                ));
+            }
+
             return new UpdateOutput(UpdateOutput.Status.SUCCESS, "Status set to " + newStatus);
         } else {
             return new UpdateOutput(UpdateOutput.Status.ERROR, String.format(ERR_NOT_FOUND_WITH_ID, id));
