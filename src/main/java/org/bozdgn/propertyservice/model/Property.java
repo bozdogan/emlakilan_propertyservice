@@ -15,8 +15,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Property {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-    @SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "property_seq")
+    @SequenceGenerator(name = "property_seq", sequenceName = "property_seq", allocationSize = 1)
     Long id;
 
 
