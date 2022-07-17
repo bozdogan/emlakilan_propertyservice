@@ -52,6 +52,12 @@ public class PropertyService {
                 .collect(Collectors.toList());
     }
 
+    public List<PropertyOutput> getLatestAcceptedAds() {
+        return repository.findTop10ByStatusOrderByDateCreated(PropertyApprovalStatus.ACCEPTED).stream()
+                .map(MappingUtil::mapPropertyToPropertyOutput)
+                .collect(Collectors.toList());
+    }
+
     public PropertyOutput get(Long id) {
         return mapPropertyToPropertyOutput(repository.findById(id).orElse(null));
     }

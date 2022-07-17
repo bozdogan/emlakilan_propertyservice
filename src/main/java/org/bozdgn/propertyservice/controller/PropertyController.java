@@ -25,6 +25,12 @@ public class PropertyController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
+    @GetMapping("/latest")
+    public List<PropertyOutput> getLatest() {
+        return propertyService.getLatestAcceptedAds();
+    }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_USER')")
     @GetMapping("/{id}")
     public PropertyOutput get(@PathVariable Long id) {
         return propertyService.get(id);

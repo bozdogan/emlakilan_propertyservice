@@ -10,4 +10,6 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 
     List<Property> findAllByStatus(PropertyApprovalStatus status);
 
+    List<Property> findTop10ByStatusOrderByDateCreated(PropertyApprovalStatus status);
+
 }
