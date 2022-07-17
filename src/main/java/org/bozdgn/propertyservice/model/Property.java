@@ -41,4 +41,7 @@ public class Property {
 
     @Column(name = "image_uri", length = 512)
     String imageUri;
+
+    @Column(name = "view_count")
+    Integer viewCount;
 }

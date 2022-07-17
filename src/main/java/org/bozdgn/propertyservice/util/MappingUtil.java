@@ -22,7 +22,8 @@ public class MappingUtil {
                 PropertyApprovalStatus.PENDING,
                 propertyInput.getTitle(),
                 propertyInput.getDescription(),
-                propertyInput.getImageUri());
+                propertyInput.getImageUri(),
+                0);
     }
 
     public static PropertyOutput mapPropertyToPropertyOutput(Property property) {
@@ -34,7 +35,8 @@ public class MappingUtil {
                 property.getStatus(),
                 property.getTitle(),
                 property.getDescription(),
-                property.getImageUri());
+                property.getImageUri(),
+                property.getViewCount());
     }
 
     private static String getCurrentUsername() {

@@ -21,4 +21,5 @@ public class PropertyOutput {
     String title;
     String description;
     String imageUri;
+    Integer viewCount;
 }

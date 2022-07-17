@@ -99,7 +99,10 @@ public class PropertyService {
 
             if (PropertyApprovalStatus.ACCEPTED.equals(newStatus)) {
                 messageSender.sendPropertyAcceptedMessage(new PropertyMessage(
-                ));
+                        property.getId(),
+                        property.getAuthor(),
+                        property.getDateCreated(),
+                        property.getViewCount()));
             }
 
             return new UpdateOutput(UpdateOutput.Status.SUCCESS, "Status set to " + newStatus);
