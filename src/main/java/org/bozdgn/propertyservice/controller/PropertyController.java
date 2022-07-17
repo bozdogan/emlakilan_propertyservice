@@ -33,7 +33,7 @@ public class PropertyController {
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
     @GetMapping("/{id}")
     public PropertyOutput get(@PathVariable Long id) {
-        return propertyService.get(id);
+        return propertyService.getAndIncreaseViewCount(id);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")

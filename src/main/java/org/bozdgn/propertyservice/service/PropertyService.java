@@ -66,6 +66,17 @@ public class PropertyService {
         return mapPropertyToPropertyOutput(repository.findById(id).orElse(null));
     }
 
+    public PropertyOutput getAndIncreaseViewCount(Long id) {
+        Optional<Property> optProperty = repository.findById(id);
+
+        if (optProperty.isPresent()) {
+            Property property = incrementViewCount(optProperty.get());
+            return mapPropertyToPropertyOutput(property);
+        } else {
+            return null;
+        }
+    }
+
     public PropertyOutput save(PropertyInput propertyInput) {
         if (propertyInput.getId() == null) {
             Property property = mapPropertyInputToProperty(propertyInput);
@@ -98,7 +109,7 @@ public class PropertyService {
             repository.save(property);
 
             if (PropertyApprovalStatus.ACCEPTED.equals(newStatus)) {
-                messageSender.sendPropertyAcceptedMessage(new PropertyMessage(
+                messageSender.sendPropertyInfoMessage(new PropertyMessage(
                         property.getId(),
                         property.getAuthor(),
                         property.getDateCreated(),
@@ -109,6 +120,11 @@ public class PropertyService {
         } else {
             return new UpdateOutput(UpdateOutput.Status.ERROR, String.format(ERR_NOT_FOUND_WITH_ID, id));
         }
+    }
+
+    private synchronized Property incrementViewCount(Property property) {
+        property.setViewCount(property.getViewCount() + 1);
+        return repository.save(property);
     }
 
 }
